@@ -19,14 +19,21 @@ def fetch_web_content(url: str) -> Optional[str]:
         return None
 
 if __name__ == "__main__":
+    # Пользовательский ввод
     user_input = input("Введите текст или путь к файлу: ")
-if user_input.startswith("http"):
-    content = fetch_web_content(user_input)
+    if user_input.startswith("http"):
+        content = fetch_web_content(user_input)
     else:
         try:
             content = read_file(user_input)
         except FileNotFoundError:
             content = user_input
+
+    if content:
+        ipv4_addresses = find_ipv4_addresses(content)
+        print("Найденные IPv4-адреса:")
+        for ip in ipv4_addresses:
+            print(ip)
 
 
 
