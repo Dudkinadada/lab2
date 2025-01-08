@@ -18,3 +18,15 @@ def fetch_web_content(url: str) -> Optional[str]:
         print(f"Ошибка при запросе к URL: {e}")
         return None
 
+if __name__ == "__main__":
+    user_input = input("Введите текст или путь к файлу: ")
+if user_input.startswith("http"):
+    content = fetch_web_content(user_input)
+    else:
+        try:
+            content = read_file(user_input)
+        except FileNotFoundError:
+            content = user_input
+
+
+
