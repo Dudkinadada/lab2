@@ -9,4 +9,12 @@ def find_ipv4_addresses(text: str) -> List[str]:
 def read_file(file_path: str) -> str:
     with open(file_path, 'r') as file:
         return file.read()
+def fetch_web_content(url: str) -> Optional[str]:
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+        return response.text
+    except requests.RequestException as e:
+        print(f"Ошибка при запросе к URL: {e}")
+        return None
 
